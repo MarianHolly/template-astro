@@ -1,6 +1,5 @@
-# Astro Template
+# Astro with Tailwind
 
-
-pnpm create astro@latest .
-pnpm astro add react
-pnpm astro add mdx
+```sh
+pnpm dlx create-astro@latest astro-app  --template with-tailwindcss --install --add react --git
+```
