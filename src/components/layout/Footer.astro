@@ -1,0 +1,86 @@
+---
+import { siteConfig } from '@/config/site.config';
+import { Separator } from '@/components/ui/separator';
+---
+
+<footer class="border-t border-border/40 bg-background/95 py-12">
+  <div class="container max-w-screen-2xl">
+    <div class="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-5 mb-8">
+      {
+        siteConfig.footerNav.map((section) => (
+          <div class="space-y-3">
+            <h3 class="font-semibold text-sm">{section.title}</h3>
+            <ul class="space-y-2">
+              {section.items.map((item) => (
+                <li>
+                  <a
+                    href={item.href}
+                    class="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    target={item.external ? '_blank' : undefined}
+                    rel={item.external ? 'noreferrer' : undefined}
+                  >
+                    {item.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+      <div class="space-y-3">
+        <h3 class="font-semibold text-sm">Follow</h3>
+        <ul class="space-y-2">
+          {siteConfig.links.twitter && (
+            <li>
+              <a
+                href={siteConfig.links.twitter}
+                class="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Twitter
+              </a>
+            </li>
+          )}
+          {siteConfig.links.github && (
+            <li>
+              <a
+                href={siteConfig.links.github}
+                class="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                target="_blank"
+                rel="noreferrer"
+              >
+                GitHub
+              </a>
+            </li>
+          )}
+          {siteConfig.links.linkedin && (
+            <li>
+              <a
+                href={siteConfig.links.linkedin}
+                class="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                target="_blank"
+                rel="noreferrer"
+              >
+                LinkedIn
+              </a>
+            </li>
+          )}
+        </ul>
+      </div>
+    </div>
+
+    <Separator />
+
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4 pt-8">
+      <p class="text-sm text-muted-foreground text-center md:text-left">
+        {siteConfig.footer.copyright}
+      </p>
+      {siteConfig.footer.tagline && (
+        <p class="text-sm text-muted-foreground text-center md:text-right">
+          {siteConfig.footer.tagline}
+        </p>
+      )}
+    </div>
+  </div>
+</footer>
