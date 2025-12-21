@@ -1,16 +1,40 @@
 ---
 import '../styles/global.css';
-const { content } = Astro.props;
+import Header from '@/components/layout/Header.astro';
+import Footer from '@/components/layout/Footer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
 ---
 
+<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<title>{content.title}</title>
+		<meta name="generator" content={Astro.generator} />
+
+		<title>{title || 'Template Astro'}</title>
+		{description && <meta name="description" content={description} />}
+
+		<!-- Theme initialization script - prevents FOUC -->
+		<script src="/scripts/theme-init.js"></script>
 	</head>
+
 	<body>
-		<slot />
+		<div class="relative flex min-h-screen flex-col">
+			<Header />
+
+			<main class="flex-1">
+				<slot />
+			</main>
+
+			<Footer />
+		</div>
 	</body>
 </html>
