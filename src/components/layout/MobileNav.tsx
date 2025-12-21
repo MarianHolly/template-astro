@@ -33,9 +33,11 @@ export default function MobileNav({ navItems }: MobileNavProps) {
           <Menu className="size-5" />
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="w-[300px] sm:w-[400px]">
-        <div className="space-y-1">
-          <h2 className="font-bold text-lg mb-4">Navigation</h2>
+      <SheetContent side="right" className="w-[300px] sm:w-[400px] p-0 flex flex-col">
+        <div className="border-b border-border px-4 sm:px-6 py-4">
+          <h2 className="font-bold text-lg">Navigation</h2>
+        </div>
+        <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-4">
           <nav className="space-y-1">
             {navItems.map((item, index) => (
               <div key={index}>
