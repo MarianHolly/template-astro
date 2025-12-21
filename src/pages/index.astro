@@ -1,29 +1,28 @@
 ---
-import '../styles/global.css';
+import MainLayout from '@/layouts/main.astro';
 // Astro Component Imports
 import Button from '../components/Button.astro';
 
-// Reacct Component Syntax:
+// React Component Syntax:
 import { Button as ButtonComponent } from '../components/ui/button.tsx'
-
-// Full Astro Component Syntax:
-// https://docs.astro.build/basics/astro-components/
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro + TailwindCSS</title>
-	</head>
+<MainLayout title="Home" description="Welcome to Template Astro">
+	<section class="container mx-auto px-4 py-16">
+		<div class="flex flex-col items-center justify-center min-h-[calc(100vh-theme(height.16)-theme(height.32))] gap-8">
+			<div class="text-center space-y-4">
+				<h1 class="text-4xl md:text-5xl font-bold">Welcome to Template Astro</h1>
+				<p class="text-xl text-muted-foreground">A modern, performant template with React, Tailwind CSS, and shadcn/ui</p>
+			</div>
 
-	<body>
-		<div class="grid place-items-center h-screen content-center gap-2">
-			<Button>Tailwind Button in Astro!</Button>
-			<ButtonComponent>Button in Shadcn/Ui</ButtonComponent>
-			<a href="/markdown-page" class="p-4 underline">Markdown is also supported...</a>
+			<div class="flex flex-col sm:flex-row gap-4">
+				<Button>Tailwind Button in Astro!</Button>
+				<ButtonComponent>Button in Shadcn/Ui</ButtonComponent>
+			</div>
+
+			<a href="/markdown-page" class="mt-8 p-4 rounded-md bg-secondary text-secondary-foreground hover:bg-secondary/90 transition-colors">
+				Markdown is also supported...
+			</a>
 		</div>
-	</body>
-</html>
+	</section>
+</MainLayout>
