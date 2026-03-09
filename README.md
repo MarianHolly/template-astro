@@ -1,250 +1,165 @@
-# Astro Template
-
-A modern, performant starter for Astro applications with React, Tailwind CSS 4, and shadcn/ui. Built with best practices and ready for rapid development.
+Zero-JS by default, React islands on-demand. Astro starter with TypeScript, Tailwind CSS 4, shadcn/ui, form validation, dark mode, error handling, and testing.
 
 ## Stack
 
-- **Framework**: [Astro 5](https://astro.build/) (Server-first, zero-JS by default)
-- **UI**: [React 19](https://react.dev/) (Islands) + [shadcn/ui](https://ui.shadcn.com/)
-- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
-- **Theme**: Custom theme provider (dark mode with localStorage)
-- **Forms & Validation**: [Zod](https://zod.dev/) (in React components)
-- **Notifications**: [Sonner](https://sonner.emilkowal.ski/)
-- **Testing**: [Vitest](https://vitest.dev/)
-- **Type Safety**: TypeScript (strict mode)
+[Astro 5](https://astro.build) • [React 19](https://react.dev) • [TypeScript](https://www.typescriptlang.org) • [Tailwind CSS 4](https://tailwindcss.com) • [shadcn/ui](https://ui.shadcn.com) • [Zod](https://zod.dev) • [Vitest](https://vitest.dev)
 
-## Getting Started
+## What's Pre-wired
 
-### 1. Clone or Use as Template
+✅ Zero-JS by default (pages are pure HTML)
+✅ React islands (hydrate only when needed)
+✅ Dark mode (system preference + localStorage)
+✅ Form validation with Zod + inline errors
+✅ Error boundaries (React components)
+✅ SEO metadata helpers
+✅ Testing setup (Vitest + co-located tests)
+✅ Git hooks (auto-fix on commit via Husky)
+✅ Markdown pages (auto-routed)
+
+## Quick Start
 
 ```bash
 # Clone
-git clone <repo-url> my-app
-cd my-app
+git clone <repo-url> my-app && cd my-app
 
-# Or use GitHub's "Use this template" button
-```
-
-### 2. Install Dependencies
-
-```bash
+# Install & setup
 pnpm install
-```
 
-### 3. Customize Site Config
+# Configure (edit site name, nav, footer)
+# → open src/config/site.config.ts
 
-Edit `src/config/site.config.ts` with your site information:
-
-```ts
-export const siteConfig: SiteConfig = {
-  name: "Your App Name",
-  title: "Your App Title",
-  description: "Your description",
-  url: "https://yoursite.com",
-  // ... update links, nav, footer
-};
-```
-
-### 4. Start Development
-
-```bash
+# Run
 pnpm dev
 ```
 
 Visit `http://localhost:3000`
 
+## What You Build
+
+- Pages in `src/pages/[name].astro`
+- Markdown in `src/pages/[name].md`
+- React islands in `src/components/`
+- Pure functions in `src/lib/`
+
+See `docs/patterns.md` for working examples.
+
 ## Project Structure
 
 ```
-.
 ├── src/
-│   ├── components/
-│   │   ├── layout/          # Header, Footer, Navbar, layout wrappers
-│   │   ├── ui/              # shadcn components (primitives)
-│   │   ├── ContactForm.tsx  # Example React island
-│   │   └── icons/           # Icon components
-│   ├── config/
-│   │   └── site.config.ts   # Site metadata, navigation, footer
-│   ├── hooks/               # React hooks (use-media-query.ts)
-│   ├── lib/                 # Pure utilities (no React/Astro)
-│   │   ├── utils.ts        # cn(), other helpers
-│   │   └── utils.test.ts   # Tests
-│   ├── layouts/
-│   │   └── main.astro      # Main layout wrapper
-│   ├── pages/              # Routes (Astro pages)
+│   ├── pages/               # Routes (auto-routed)
 │   │   ├── index.astro     # Home
 │   │   ├── about.astro     # About
 │   │   ├── contact.astro   # Contact form
-│   │   ├── 404.astro       # 404 page
-│   │   └── markdown-page.md # Example Markdown page
-│   ├── styles/
-│   │   └── global.css      # Global styles & theme
-│   └── types/
-│       └── index.ts        # Shared TypeScript types
-├── public/
-│   ├── favicon.svg
-│   └── scripts/            # Browser scripts (theme init)
-├── CONSTITUTION.md         # Architectural principles
-├── astro.config.mjs       # Astro configuration
-├── vitest.config.ts       # Test configuration
+│   │   └── markdown-page.md # Markdown route
+│   ├── components/
+│   │   ├── layout/          # Header, Footer, Nav
+│   │   ├── ui/              # shadcn primitives
+│   │   └── ContactForm.tsx  # React island
+│   ├── layouts/main.astro   # Main layout wrapper
+│   ├── config/site.config.ts # Site metadata & nav
+│   ├── lib/                 # Pure utilities
+│   ├── hooks/               # React hooks
+│   ├── types/               # Shared types
+│   ├── styles/global.css    # Theme tokens
+│   └── icons/               # Icon components
+├── docs/patterns.md         # Quick reference
+├── CONSTITUTION.md          # Architecture principles
 └── package.json
 ```
 
-## Key Files
+## Customize
 
-- **`src/config/site.config.ts`**: Navigation, footer links, site metadata. Update this first.
-- **`src/pages/`**: All page routes. Astro handles routing automatically.
-- **`src/components/`**: Reusable Astro and React components.
-- **`src/layouts/main.astro`**: Main layout with Header + Footer.
-- **`CONSTITUTION.md`**: Detailed architectural guide
+**Colors:** Edit `src/styles/global.css`
+**Navigation:** Edit `src/config/site.config.ts`
+**Pages:** Add `.astro` or `.md` to `src/pages/`
+**Islands:** Add `.tsx` to `src/components/`
 
-## Features
+## Commands
 
-### Dark Mode
-
-System preference is respected by default. Theme persists to localStorage via the script in `public/scripts/theme-init.js`.
-
-```tsx
-// In React islands:
-import { useTheme } from "next-themes";
-
-export function MyComponent() {
-  const { theme, setTheme } = useTheme();
-  // ...
-}
+```
+pnpm dev              # Dev server
+pnpm build            # Production build
+pnpm preview          # Preview build
+pnpm test             # Run tests
+pnpm format           # Format code
+pnpm type-check       # Type check
 ```
 
-### Forms & Validation
+## Design Principles
 
-Use Zod in React components for runtime validation:
+This template follows a [constitution](./CONSTITUTION.md):
 
-```tsx
-import { z } from "zod";
+- **No magic:** Explicit over implicit. Clear folder structure.
+- **Zero-JS first:** Ship no JavaScript by default. Add React only where needed.
+- **Islands:** React components are hydrated on-demand (`client:visible`, `client:idle`).
+- **Type-safe:** Strict TypeScript, no `any`.
+- **Validated:** Zod at boundaries (forms, API).
+- **Tested:** Pure functions in `src/lib/` are tested.
 
-const schema = z.object({
-  email: z.string().email(),
-  message: z.string().min(10),
-});
+## Astro Islands Explained
 
-// Validate and show inline errors
-const result = schema.safeParse(formData);
-```
-
-### Responsive Design
-
-Built mobile-first with Tailwind breakpoints:
+**Pages (`.astro`):** Pure HTML + server-side logic. Zero JavaScript.
 
 ```astro
-<!-- mobile → md (768px) → lg (1024px) -->
-<div class="p-4 md:p-6 lg:p-8">
+---
+const title = "About";
+---
+<h1>{title}</h1>
 ```
 
-### Styling with `cn()`
-
-Always use `cn()` for Tailwind class merging:
-
-```tsx
-import { cn } from "@/lib/utils";
-
-<div className={cn("px-2", customClass)} />
-```
-
-### React Islands
-
-Interactive features are React components. Mark them with `client:load` in Astro:
+**Islands (`.tsx`):** Interactive React components. Only hydrate when user interacts.
 
 ```astro
 ---
 import ContactForm from '@/components/ContactForm';
 ---
-
-<ContactForm client:load />
+<ContactForm client:visible />
 ```
 
-## Testing
+Use hydration directives wisely:
+- `client:load` — Needed immediately
+- `client:idle` — Can wait until browser is idle
+- `client:visible` — Can wait until scrolled into view (recommended)
 
-Unit tests for pure functions in `src/lib/`:
+Result: **Faster page loads + full interactivity when needed.**
 
-```bash
-pnpm test
-```
+## Examples
 
-Tests are co-located and use Vitest with node environment:
-
-```
-src/lib/
-├── utils.ts
-└── utils.test.ts  ← test for above
-```
-
-## Scripts
-
-```bash
-pnpm dev        # Start dev server
-pnpm build      # Build for production
-pnpm preview    # Preview production build
-pnpm astro      # Run astro CLI
-pnpm test       # Run tests with Vitest
-```
-
-## Architecture
-
-See **`CONSTITUTION.md`** for detailed principles:
-
-- **Astro components**: Server-rendered, zero-JS by default
-- **React islands**: Small, focused interactive components
-- **`src/lib/`**: Pure functions, no framework code, fully testable
-- **`src/hooks/`**: React state logic (no JSX)
-- **`src/config/`**: Static configuration, no logic
-- **`src/types/`**: Shared types, no internal imports
-- **`src/components/ui/`**: shadcn primitives, never customized
-- **`src/components/layout/`**: Reusable shells and layout wrappers
-- **`src/pages/`**: Route definitions
-
-## What's Not Included
-
-- **Database**: Add your own (Prisma, Drizzle, etc.)
-- **Authentication**: Astro Auth is available if needed
-- **Deployment config**: Configure for your hosting (Vercel, Netlify, etc.)
-- **Storybook**: Maintain one source of truth (the component files)
-
-## Customization
-
-1. **Colors**: Edit `src/styles/global.css` (Tailwind theme tokens)
-2. **Navigation**: Update `src/config/site.config.ts`
-3. **Layout**: Modify `src/components/layout/`
-4. **Pages**: Add new `.astro` or `.md` files in `src/pages/`
+- **Pages:** `src/pages/index.astro` (hero), `src/pages/about.astro` (content)
+- **Islands:** `src/pages/contact.astro` (uses React form)
+- **Forms:** `src/components/ContactForm.tsx` (Zod validation, loading state)
+- **Dark mode:** `src/components/layout/ThemeToggle.tsx`
+- **Errors:** `src/components/error-boundary.tsx`
+- **SEO:** `src/lib/seo.ts` (Open Graph, Twitter cards)
+- **Markdown:** `src/pages/markdown-page.md` (auto-routed content page)
 
 ## FAQ
 
-**Q: How do I change the theme colors?**
-A: Edit the Tailwind theme in `src/styles/global.css`. Or use CSS custom properties via `--foreground`, `--background`, etc.
+**Why Astro over Next.js?**
+Zero-JS by default. Faster. Better for content-first sites. React when you need it.
 
-**Q: Where do I add API routes?**
-A: Create `src/pages/api/` folder with API route handlers.
+**Why React islands, not Svelte/Vue?**
+React has the largest ecosystem. Mix & match later if needed.
 
-**Q: How do I use React everywhere?**
-A: That defeats the purpose. Astro is zero-JS by default. Use React for islands only.
+**How much JavaScript ships?**
+Only for interactive React islands. Pages are pure HTML. Typically 0–50KB depending on islands.
 
-**Q: Can I add a database?**
-A: Yes, use API routes in `src/pages/api/` with your database driver.
+**Can I add authentication?**
+Use API routes in `src/pages/api/` + any auth library. Astro Auth exists but not pre-configured.
 
-**Q: How do I deploy?**
-A: This is a standard Astro site. Deploy to Vercel, Netlify, or self-host. Check Astro docs.
+**How do I add a database?**
+Use `src/pages/api/` routes + Prisma, Drizzle, or any DB driver.
 
-## Astro-Specific Notes
+**How do I deploy?**
+Standard Astro site. Works on Vercel, Netlify, or self-hosted. Check Astro docs.
 
-- **Astro files**: Use `*.astro` for layouts and pages (server-rendered, zero-JS)
-- **React files**: Use `*.tsx` for interactive islands (JavaScript-heavy components)
-- **client:load**: Hydrate React component on page load
-- **client:idle**: Hydrate when browser is idle
-- **client:visible**: Hydrate when component scrolls into view
-- **client:only**: Skip server rendering (use sparingly)
+## Next
 
-## License
-
-Use freely for your projects.
+- 📖 [docs/patterns.md](./docs/patterns.md) — 2-minute reference for common patterns
+- 📋 [CONSTITUTION.md](./CONSTITUTION.md) — Detailed architecture & naming conventions
+- 💻 [src/pages/contact.astro](./src/pages/contact.astro) — Working React island example
 
 ---
 
-**Questions?** Read `CONSTITUTION.md` or explore the example pages (`about`, `contact`).
+**Fast by default. Interactive when needed. Ready to ship.**
