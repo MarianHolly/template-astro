@@ -49,33 +49,12 @@ export const siteConfig: SiteConfig = {
       href: "/",
     },
     {
-      title: "Features",
-      href: "#",
-      items: [
-        {
-          title: "Responsive Design",
-          href: "/features/responsive",
-          description: "Mobile-first responsive design",
-        },
-        {
-          title: "Performance",
-          href: "/features/performance",
-          description: "Optimized for speed",
-        },
-        {
-          title: "Theming",
-          href: "/features/theming",
-          description: "Dark mode and theme support",
-        },
-      ],
+      title: "About",
+      href: "/about",
     },
     {
-      title: "Documentation",
-      href: "/docs",
-    },
-    {
-      title: "Blog",
-      href: "/blog",
+      title: "Contact",
+      href: "/contact",
     },
   ],
   footerNav: [
