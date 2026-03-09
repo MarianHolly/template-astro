@@ -1,0 +1,47 @@
+---
+import MainLayout from '@/layouts/main.astro';
+import NarrowLayout from '@/components/layout/NarrowLayout.astro';
+---
+
+<MainLayout title="About" description="Learn more about our template and approach.">
+	<NarrowLayout>
+		<div class="space-y-8">
+			<div class="space-y-4">
+				<h1 class="text-4xl font-bold">About</h1>
+				<p class="text-lg text-muted-foreground">
+					Learn more about our template and approach.
+				</p>
+			</div>
+
+			<div class="prose prose-sm dark:prose-invert max-w-none space-y-6">
+				<section>
+					<h2 class="text-2xl font-semibold">Our Mission</h2>
+					<p>
+						We believe developers deserve better starting points. This template
+						eliminates decision fatigue by providing a solid foundation with
+						best practices baked in.
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-2xl font-semibold">What You Get</h2>
+					<ul class="space-y-2 list-disc list-inside">
+						<li>Modern stack with Astro, React, and Tailwind CSS 4</li>
+						<li>shadcn/ui components for consistent UI</li>
+						<li>Dark mode support with theme persistence</li>
+						<li>Type-safe with strict TypeScript</li>
+						<li>Testing infrastructure with Vitest</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2 class="text-2xl font-semibold">Getting Started</h2>
+					<p>
+						Clone this template, customize the site config, and start building.
+						The structure follows best practices while staying flexible for your needs.
+					</p>
+				</section>
+			</div>
+		</div>
+	</NarrowLayout>
+</MainLayout>
