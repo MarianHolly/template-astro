@@ -7,7 +7,12 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "test": "vitest"
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write \"**/*.{ts,tsx,astro,md,json}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,astro,md,json}\"",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.13",
