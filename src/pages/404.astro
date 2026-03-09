@@ -4,60 +4,42 @@ import { Button } from '@/components/ui/button';
 ---
 
 <MainLayout title="404 - Page Not Found" description="Oops! The page you're looking for doesn't exist.">
-	<section class="mx-auto max-w-screen-2xl px-4 py-16">
-		<div class="flex flex-col items-center justify-center min-h-[calc(100vh-theme(height.16)-theme(height.32))] gap-8">
+	<section class="flex flex-col items-center justify-center min-h-[calc(100vh-theme(height.16))] px-4">
+		<div class="w-full max-w-2xl space-y-8 text-center">
 			<!-- Animated 404 Text -->
-			<div class="text-center space-y-6">
-				<div class="error-404">
-					404
-				</div>
+			<div class="space-y-6">
+				<div class="error-404">404</div>
 
 				<div class="space-y-3">
-					<h1 class="text-3xl md:text-4xl font-bold">Oops! Page Lost in Space</h1>
-					<p class="text-lg text-muted-foreground max-w-md mx-auto">
-						Looks like you've ventured into the digital unknown. <br/ > The page you're searching for has taken an unexpected journey.
+					<h1 class="text-3xl font-bold md:text-4xl">Page Not Found</h1>
+					<p class="max-w-md mx-auto text-lg text-muted-foreground">
+						The page you're looking for doesn't exist or has been moved.
 					</p>
 				</div>
 			</div>
 
-			
-
 			<!-- Action Buttons -->
-			<div class="flex flex-col sm:flex-row gap-4 pt-4">
-				<a href="/">
-					<Button size="lg" class="w-full sm:w-auto">
-						Back to Home
-					</Button>
-				</a>
+			<div class="flex flex-col gap-4 sm:flex-row sm:justify-center pt-4">
+				<Button size="lg" client:load as="a" href="/">Back to Home</Button>
 				<button
-					onClick="window.history.back()"
+					id="go-back-btn"
 					class="px-6 py-2 rounded-lg border border-border hover:bg-accent transition-colors font-medium"
 				>
 					Go Back
 				</button>
 			</div>
-
-			<!-- Helpful Links -->
-			<div class="mt-12 text-center text-sm text-muted-foreground">
-				<p class="mb-4">Lost? Try these:</p>
-				<div class="flex flex-wrap gap-2 justify-center">
-					<a href="/" class="px-3 py-1.5 rounded-md hover:bg-accent transition-colors">
-						Home
-					</a>
-					<a href="/docs" class="px-3 py-1.5 rounded-md hover:bg-accent transition-colors">
-						Documentation
-					</a>
-					<a href="/blog" class="px-3 py-1.5 rounded-md hover:bg-accent transition-colors">
-						Blog
-					</a>
-					<a href="/contact" class="px-3 py-1.5 rounded-md hover:bg-accent transition-colors">
-						Contact
-					</a>
-				</div>
-			</div>
 		</div>
 	</section>
 </MainLayout>
+
+<script>
+	const goBackBtn = document.getElementById('go-back-btn');
+	if (goBackBtn) {
+		goBackBtn.addEventListener('click', () => {
+			window.history.back();
+		});
+	}
+</script>
 
 <style>
 	.error-404 {
